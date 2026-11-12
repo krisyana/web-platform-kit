@@ -7,6 +7,6 @@ export default defineConfig({
   workers: 1,
   webServer: [
     { command: "pnpm idp", url: "http://127.0.0.1:4010/.well-known/openid-configuration", reuseExistingServer: !process.env.CI },
-    { command: "pnpm build && pnpm start", url: "http://localhost:3000", timeout: 180_000, reuseExistingServer: !process.env.CI },
+    { command: "pnpm start" /* build first: `pnpm build` (turbo does it) */, url: "http://localhost:3000", timeout: 180_000, reuseExistingServer: !process.env.CI },
   ],
 });
