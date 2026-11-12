@@ -35,7 +35,9 @@
     "build-storybook": "storybook build",
     "test:e2e": "playwright test",
     "test:e2e:update": "playwright test --update-snapshots",
-    "size": "size-limit && node scripts/check-css-size.mjs"
+    "size": "size-limit && node scripts/check-css-size.mjs",
+    "deploy:storybook": "pnpm build && pnpm build-storybook && pnpm --filter @kit/demo exec wrangler deploy --config ../../packages/ui/wrangler.jsonc",
+    "deploy:storybook:dry-run": "pnpm build && pnpm build-storybook && pnpm --filter @kit/demo exec wrangler deploy --config ../../packages/ui/wrangler.jsonc --dry-run"
   },
   "peerDependencies": {
     "react": ">=18",

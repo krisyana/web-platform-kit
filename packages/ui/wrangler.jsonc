@@ -1,0 +1,6 @@
+{
+  "$schema": "../../apps/demo/node_modules/wrangler/config-schema.json",
+  "name": "web-platform-kit-storybook",
+  "compatibility_date": "2026-11-01",
+  "assets": { "directory": "./storybook-static", "not_found_handling": "404-page" }
+}
