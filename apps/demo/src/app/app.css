@@ -1,0 +1,7 @@
+body { margin: 0; background: var(--kit-color-bg); color: var(--kit-color-text); font-family: var(--kit-font-sans); }
+a { color: var(--kit-color-primary); }
+.site-header { padding: 12px 24px; border-bottom: 1px solid var(--kit-color-border); }
+.site-nav { display: flex; gap: 16px; }
+.site-main { padding: 24px; }
+.stack { display: grid; gap: 16px; max-width: 360px; }
+.row { display: flex; gap: 8px; flex-wrap: wrap; }

@@ -31,6 +31,16 @@
         "types": "./dist/collector.d.cts",
         "default": "./dist/collector.cjs"
       }
+    },
+    "./otlp": {
+      "import": {
+        "types": "./dist/otlp.d.ts",
+        "default": "./dist/otlp.js"
+      },
+      "require": {
+        "types": "./dist/otlp.d.cts",
+        "default": "./dist/otlp.cjs"
+      }
     }
   },
   "scripts": {

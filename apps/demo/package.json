@@ -1,0 +1,35 @@
+{
+  "name": "@kit/demo",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "next dev -p 3000",
+    "build": "next build",
+    "start": "next start -p 3000",
+    "typecheck": "next typegen && tsc --noEmit",
+    "idp": "tsx scripts/idp.ts",
+    "test": "playwright test",
+    "cf:build": "opennextjs-cloudflare build",
+    "cf:dry-run": "opennextjs-cloudflare build && wrangler deploy --dry-run"
+  },
+  "dependencies": {
+    "@kit/auth": "workspace:*",
+    "@kit/telemetry": "workspace:*",
+    "@kit/ui": "workspace:*",
+    "next": "^16.4.6",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "^4.14.0",
+    "@opennextjs/cloudflare": "^1.20.16",
+    "@playwright/test": "^1.65.0",
+    "@types/node": "^22.0.0",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "tsx": "^4.19.0",
+    "typescript": "~5.9.3",
+    "wrangler": "^4.160.1"
+  }
+}

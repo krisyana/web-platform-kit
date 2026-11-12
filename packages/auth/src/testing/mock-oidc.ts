@@ -3,6 +3,8 @@ import { exportJWK, generateKeyPair, SignJWT, type JWK, type CryptoKey } from "j
 import { pkceChallenge, randomToken } from "../crypto";
 
 export interface MockOidcOptions {
+  /** Listen port (default: random). */
+  port?: number;
   clientId?: string;
   redirectUris?: string[];
   user?: { sub: string; name?: string; email?: string };
@@ -87,7 +89,7 @@ export async function startMockOidc(initial: MockOidcOptions = {}) {
     }
     send(res, 404, { error: "not_found" });
   });
-  await new Promise<void>((r) => server.listen(0, "127.0.0.1", r));
+  await new Promise<void>((r) => server.listen(opts.port ?? 0, "127.0.0.1", r));
   issuer = `http://127.0.0.1:${(server.address() as import("node:net").AddressInfo).port}`;
 
   return {

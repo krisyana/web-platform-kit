@@ -15,6 +15,8 @@ export interface TracingOptions {
   exporter?: SpanExporter;
   /** Origins that may receive `traceparent` headers on fetch (CORS must allow the header). Default: same origin only. */
   propagateTo?: (string | RegExp)[];
+  /** Batch export delay in ms (default 5000). */
+  batchDelayMs?: number;
   /** Patch `fetch` to create client spans. Default true. */
   instrumentFetch?: boolean;
 }
@@ -23,7 +25,7 @@ export interface Tracing { provider: WebTracerProvider; tracer: Tracer; forceFlu
 
 export function initTracing(o: TracingOptions): Tracing {
   if (!o.endpoint && !o.exporter) throw new Error("initTracing needs `endpoint` or `exporter`");
-  const processor = o.exporter ? new SimpleSpanProcessor(o.exporter) : new BatchSpanProcessor(new OTLPTraceExporter({ url: o.endpoint! }));
+  const processor = o.exporter ? new SimpleSpanProcessor(o.exporter) : new BatchSpanProcessor(new OTLPTraceExporter({ url: o.endpoint! }), { scheduledDelayMillis: o.batchDelayMs ?? 5000 });
   const provider = new WebTracerProvider({
     resource: resourceFromAttributes({ "service.name": o.serviceName, ...(o.serviceVersion && { "service.version": o.serviceVersion }) }),
     spanProcessors: [processor],

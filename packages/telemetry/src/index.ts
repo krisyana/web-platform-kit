@@ -2,3 +2,5 @@ export { initTracing, withSpan, type Tracing, type TracingOptions } from "./trac
 export { createLogger, createRemoteSink, type Logger, type LoggerOptions, type Level } from "./logger";
 export { ErrorBoundary, type ErrorBoundaryProps } from "./ErrorBoundary";
 export { reportWebVitals, type VitalsOptions, type VitalsPayload } from "./vitals";
+
+export { flattenOtlp, type SpanRow } from "./otlp";
