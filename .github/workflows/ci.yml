@@ -24,9 +24,8 @@ jobs:
         run: pnpm --filter @kit/ui size
       - name: Build Storybook
         run: pnpm --filter @kit/ui build-storybook
-      # Visual baselines are committed for darwin only so far; Linux baselines still need generating (see STATUS).
-      - name: Browser tests (axe, keyboard; visual excluded)
-        run: pnpm --filter @kit/ui exec playwright test --grep-invert @visual
+      - name: Browser tests (axe, keyboard, visual regression against Linux baselines)
+        run: pnpm --filter @kit/ui exec playwright test
   perf:
     runs-on: ubuntu-latest
     needs: verify
