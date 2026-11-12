@@ -2,12 +2,23 @@
   "name": "web-platform-kit",
   "private": true,
   "packageManager": "pnpm@12.16.1",
-  "engines": { "node": ">=20" },
+  "engines": {
+    "node": ">=20"
+  },
   "scripts": {
     "build": "turbo run build",
     "test": "turbo run test",
     "typecheck": "turbo run typecheck",
-    "ci": "turbo run typecheck test build"
+    "ci": "turbo run typecheck test build",
+    "changeset": "changeset",
+    "version-packages": "changeset version",
+    "release:dry-run": "bash scripts/release-dry-run.sh"
   },
-  "devDependencies": { "turbo": "^2.11.11", "typescript": "~5.9.3" }
+  "devDependencies": {
+    "@arethetypeswrong/cli": "^0.18.5",
+    "@changesets/cli": "^3.0.3",
+    "publint": "^0.3.25",
+    "turbo": "^2.11.11",
+    "typescript": "~5.9.3"
+  }
 }
