@@ -19,7 +19,7 @@ Requires Node >= 20 and pnpm. Developed on Node 26 / pnpm 12.
 
 | Package | State |
 |---|---|
-| [`@kit/ui`](packages/ui) | M1 in progress: 5 components + ThemeProvider, 13 tests, Storybook builds |
+| [`@kit/ui`](packages/ui) | M1 nearly done: 5 components + ThemeProvider, 13 unit tests, 23 browser tests (axe, keyboard, visual), size budget |
 | `@kit/auth` | planned (M2) |
 | `@kit/telemetry` | planned (M3) |
 
@@ -27,8 +27,9 @@ Requires Node >= 20 and pnpm. Developed on Node 26 / pnpm 12.
 
 | Metric | Value | How measured |
 |---|---|---|
-| `@kit/ui` ESM bundle | 2.4 kB gzip | `gzip -c packages/ui/dist/index.js \| wc -c` (2471 B) |
-| `@kit/ui` CSS | 1.3 kB gzip | same on `dist/styles.css` (1297 B) |
+| `@kit/ui` JS (minified, gzip, size-limit) | 2.05 kB (budget 4 kB) | `pnpm --filter @kit/ui size` |
+| `@kit/ui` CSS (gzip) | 1288 B (budget 3 kB) | same command |
+| Browser tests | 23 pass (axe incl. contrast, dialog keyboard, toasts, theme, 10 visual) | `pnpm --filter @kit/ui test:e2e` |
 | Tests | 13 passing, axe 0 violations in tested states | `pnpm --filter @kit/ui test` |
 
 Performance budgets, Lighthouse and before/after numbers arrive in M5.

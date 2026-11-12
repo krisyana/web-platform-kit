@@ -12,5 +12,11 @@ jobs:
         with: { node-version: 22, cache: pnpm }
       - run: pnpm install --frozen-lockfile
       - run: pnpm run ci
+      - name: Size budgets
+        run: pnpm --filter @kit/ui size
       - name: Build Storybook
         run: pnpm --filter @kit/ui build-storybook
+      - run: pnpm --filter @kit/ui exec playwright install --with-deps chromium
+      # Visual baselines are committed for darwin only so far; Linux baselines still need generating (see STATUS).
+      - name: Browser tests (axe, keyboard; visual excluded)
+        run: pnpm --filter @kit/ui exec playwright test --grep-invert @visual
