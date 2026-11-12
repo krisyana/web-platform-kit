@@ -11,7 +11,10 @@
     "idp": "tsx scripts/idp.ts",
     "test": "playwright test",
     "cf:build": "opennextjs-cloudflare build",
-    "cf:dry-run": "opennextjs-cloudflare build && wrangler deploy --dry-run"
+    "cf:dry-run": "opennextjs-cloudflare build && wrangler deploy --dry-run",
+    "size": "size-limit",
+    "lhci": "lhci autorun",
+    "perf": "pnpm build && pnpm size && pnpm lhci"
   },
   "dependencies": {
     "@kit/auth": "workspace:*",
@@ -23,13 +26,24 @@
   },
   "devDependencies": {
     "@axe-core/playwright": "^4.14.0",
+    "@lhci/cli": "^0.16.0",
     "@opennextjs/cloudflare": "^1.20.16",
     "@playwright/test": "^1.65.0",
+    "@size-limit/file": "^14.3.0",
     "@types/node": "^22.0.0",
     "@types/react": "^19.0.0",
     "@types/react-dom": "^19.0.0",
+    "size-limit": "^14.3.0",
     "tsx": "^4.19.0",
     "typescript": "~5.9.3",
     "wrangler": "^4.160.1"
-  }
+  },
+  "size-limit": [
+    {
+      "name": "client JS (all chunks, gzip)",
+      "path": ".next/static/chunks/**/*.js",
+      "gzip": true,
+      "limit": "230 kB"
+    }
+  ]
 }

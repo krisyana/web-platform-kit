@@ -33,3 +33,7 @@ Legend: ✅ verified by the command in the Evidence column | ⏳ planned | ❓ u
 | Publish dry run (publint --strict, attw node16, `pnpm publish --dry-run`) for all 3 packages | ✅ | `pnpm release:dry-run` exits 0; nothing published. node10 resolution of subpath exports is ignored by design |
 | CI changeset-required check on PRs | ❓ | in workflow, never executed |
 | npm provenance / real publish | ❓ | not done; needs owner approval, public repo and `@kit` npm scope |
+| Demo app (Next.js 16 App Router) consuming ui + auth + telemetry, nonce CSP via proxy | ✅ | `pnpm --filter @kit/demo test`: 4 Playwright tests (CSP header + zero console errors, axe, full OIDC login against mock IdP with HttpOnly cookie and 403 on CSRF, telemetry arrives) |
+| Perf budgets: size-limit (ui, demo), Lighthouse CI assertions | ✅ | `pnpm lhci` exit 0 on baseline; exit 1 on a deliberate regression (see docs/perf/README.md) |
+| Before/after numbers | ✅ (lab, local) | docs/perf/README.md; baseline LCP 755 ms, TBT 4 ms, JS 208 kB gz |
+| Field Web Vitals / CI-hosted Lighthouse numbers | ❓ | none yet |

@@ -26,3 +26,19 @@ jobs:
       # Visual baselines are committed for darwin only so far; Linux baselines still need generating (see STATUS).
       - name: Browser tests (axe, keyboard; visual excluded)
         run: pnpm --filter @kit/ui exec playwright test --grep-invert @visual
+  perf:
+    runs-on: ubuntu-latest
+    needs: verify
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 22, cache: pnpm }
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm run build
+      - name: Size budgets and Lighthouse CI (fail on regression)
+        working-directory: apps/demo
+        run: pnpm size && pnpm lhci
+      - name: Demo e2e (Playwright)
+        working-directory: apps/demo
+        run: pnpm exec playwright install --with-deps chromium && pnpm test
