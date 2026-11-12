@@ -1,0 +1,19 @@
+name: Update visual baselines
+# Manually generates Linux screenshot baselines in the same environment CI uses, and uploads them as an artifact.
+# Review the images before committing them to packages/ui/e2e/__screenshots__/linux/.
+on: workflow_dispatch
+jobs:
+  baselines:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 22, cache: pnpm }
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm --filter @kit/ui build
+      - run: pnpm --filter @kit/ui build-storybook
+      - run: pnpm --filter @kit/ui exec playwright install --with-deps chromium
+      - run: pnpm --filter @kit/ui exec playwright test --grep @visual --update-snapshots
+      - uses: actions/upload-artifact@v4
+        with: { name: linux-baselines, path: packages/ui/e2e/__screenshots__/linux }
