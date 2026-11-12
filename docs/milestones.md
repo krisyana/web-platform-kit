@@ -26,7 +26,7 @@ Acceptance:
 6. XSS test: injected script cannot read session credentials; open-redirect `returnTo` attempts rejected.
 7. `THREAT_MODEL.md` (STRIDE table mapped to tests) and CSP/CORS/cookie guide published. Line coverage on `src/` >= 90%.
 
-## M3: `@kit/telemetry`
+## M3: `@kit/telemetry` (done 2026-11-12; Web Vitals mocked)
 1. OpenTelemetry web tracer provider with fetch instrumentation and OTLP/HTTP exporter; spans verified in a test with an in-memory exporter.
 2. Structured logger emits JSON with trace/span correlation ids (test).
 3. React `ErrorBoundary` reports error + component stack to logger and span (test).

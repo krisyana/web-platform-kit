@@ -24,3 +24,6 @@ Legend: ✅ verified by the command in the Evidence column | ⏳ planned | ❓ u
 | `@kit/auth` against a real IdP (Keycloak/Auth0/Google) | ❓ | only the mock IdP |
 | `@kit/auth` production session store, RP-initiated logout, rate limiting | ⏳ | not implemented; listed in threat model |
 | CSP guidance | ❓ | written, to be proven in M6 demo |
+| `@kit/telemetry`: tracing (OTLP export e2e, fetch spans), JSON logger with trace ids + redaction, ErrorBoundary, Web Vitals reporter, demo collector | ✅ | `pnpm --filter @kit/telemetry test`: 21 tests, 100% lines / 94% branches |
+| Demo dashboard renders | ✅ | `pnpm --filter @kit/telemetry demo` + headless Chromium load: rows rendered, 0 page errors (manual, synthetic data) |
+| Real Web Vitals values, real OTel collector, async context propagation in browsers | ❓ | mocked / not tested; see package README |
