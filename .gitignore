@@ -1,0 +1,8 @@
+node_modules
+dist
+.turbo
+storybook-static
+coverage
+.DS_Store
+test-results
+playwright-report
