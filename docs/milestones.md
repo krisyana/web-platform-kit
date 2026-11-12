@@ -33,7 +33,7 @@ Acceptance:
 4. Web Vitals reporter (LCP, INP, CLS, TTFB) sends to a collector endpoint (test with mocked `web-vitals`).
 5. Demo collector + dashboard page showing received events; runs with one command.
 
-## M4: Release tooling
+## M4: Release tooling (done 2026-11-12, dry run only)
 1. Changesets configured; CI fails PRs that touch published packages without a changeset.
 2. `pnpm changeset version` produces CHANGELOGs; recorded in repo.
 3. One deliberate breaking change in `@kit/ui` with: deprecation in minor, removal in major, `docs/migrations/` guide and a jscodeshift codemod with fixture tests.

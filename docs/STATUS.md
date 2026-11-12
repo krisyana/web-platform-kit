@@ -27,3 +27,9 @@ Legend: ✅ verified by the command in the Evidence column | ⏳ planned | ❓ u
 | `@kit/telemetry`: tracing (OTLP export e2e, fetch spans), JSON logger with trace ids + redaction, ErrorBoundary, Web Vitals reporter, demo collector | ✅ | `pnpm --filter @kit/telemetry test`: 21 tests, 100% lines / 94% branches |
 | Demo dashboard renders | ✅ | `pnpm --filter @kit/telemetry demo` + headless Chromium load: rows rendered, 0 page errors (manual, synthetic data) |
 | Real Web Vitals values, real OTel collector, async context propagation in browsers | ❓ | mocked / not tested; see package README |
+| Changesets: two sequential releases of `@kit/ui` (0.2.0 deprecation, 0.3.0 removal) with CHANGELOG | ✅ | `packages/ui/CHANGELOG.md`, `.changeset/config.json` |
+| Codemod `button-loading-to-busy` | ✅ | 6 fixture tests + jscodeshift CLI run on a sample file |
+| Migration guide + RELEASING doc | ✅ | `docs/migrations/ui-0.2-to-0.3.md`, `docs/RELEASING.md` |
+| Publish dry run (publint --strict, attw node16, `pnpm publish --dry-run`) for all 3 packages | ✅ | `pnpm release:dry-run` exits 0; nothing published. node10 resolution of subpath exports is ignored by design |
+| CI changeset-required check on PRs | ❓ | in workflow, never executed |
+| npm provenance / real publish | ❓ | not done; needs owner approval, public repo and `@kit` npm scope |

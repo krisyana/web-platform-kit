@@ -7,10 +7,16 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with: { fetch-depth: 0 }
       - uses: pnpm/action-setup@v4
       - uses: actions/setup-node@v4
         with: { node-version: 22, cache: pnpm }
       - run: pnpm install --frozen-lockfile
+      - name: Require a changeset for published-package changes
+        if: github.event_name == 'pull_request'
+        run: pnpm exec changeset status --since=origin/${{ github.base_ref }}
+      - name: Release dry run (publint, attw, publish --dry-run)
+        run: pnpm release:dry-run
       - run: pnpm run ci
       - name: Size budgets
         run: pnpm --filter @kit/ui size

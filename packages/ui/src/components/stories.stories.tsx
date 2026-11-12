@@ -8,7 +8,7 @@ type S = StoryObj;
 
 export const Buttons: S = { render: () => (
   <div style={{ display: "flex", gap: 12 }}>
-    <Button>Primary</Button><Button variant="secondary">Secondary</Button><Button variant="danger">Danger</Button><Button loading>Loading</Button>
+    <Button>Primary</Button><Button variant="secondary">Secondary</Button><Button variant="danger">Danger</Button><Button busy>Busy</Button>
   </div>) };
 
 export const Inputs: S = { render: () => (

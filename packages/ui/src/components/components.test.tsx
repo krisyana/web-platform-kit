@@ -16,9 +16,9 @@ describe("Button", () => {
     expect(onClick).toHaveBeenCalledTimes(2);
     expect(await axe(container)).toHaveNoViolations();
   });
-  it("ignores clicks and reports busy while loading, but stays focusable", async () => {
+  it("ignores clicks and reports busy, but stays focusable", async () => {
     const onClick = vi.fn();
-    render(<Button loading onClick={onClick}>Save</Button>);
+    render(<Button busy onClick={onClick}>Save</Button>);
     const btn = screen.getByRole("button");
     await userEvent.click(btn);
     expect(onClick).not.toHaveBeenCalled();
@@ -31,13 +31,10 @@ describe("Button", () => {
     await userEvent.click(screen.getByRole("button"));
     expect(onClick).not.toHaveBeenCalled(); expect(screen.getByRole("button")).toHaveAttribute("aria-busy", "true");
   });
-  it("still honours deprecated `loading` and warns once", async () => {
-    const warn = vi.spyOn(console, "warn").mockImplementation(() => {});
-    const { rerender } = render(<Button loading>A</Button>);
-    rerender(<Button loading>B</Button>);
-    expect(screen.getByRole("button")).toHaveAttribute("aria-busy", "true");
-    expect(warn.mock.calls.filter((c) => String(c[0]).includes("deprecated")).length).toBeLessThanOrEqual(1);
-    warn.mockRestore();
+  it("no longer accepts the removed `loading` prop (type-level)", () => {
+    // @ts-expect-error `loading` was removed in 0.3.0; use `busy`
+    const el = <Button loading>x</Button>;
+    expect(el).toBeTruthy();
   });
   it("defaults to type=button so it never submits a form by accident", () => {
     render(<Button>x</Button>);

@@ -8,8 +8,8 @@ for dir in packages/*/; do
   name=$(node -p "require('./${dir}package.json').name")
   echo "=== ${name} ==="
   (cd "$dir" && pnpm exec publint --strict)
-  # attw: ignore-rules for known, documented false positives can be added here
-  (cd "$dir" && pnpm pack --pack-destination /tmp >/dev/null && pnpm exec attw --pack . --profile node16)
+  # styles.css is a plain CSS asset (no types), so it is excluded from attw; node10 resolution is ignored by the node16 profile
+  (cd "$dir" && pnpm pack --pack-destination /tmp >/dev/null && pnpm exec attw --pack . --profile node16 --exclude-entrypoints styles.css)
   (cd "$dir" && pnpm publish --dry-run --no-git-checks --access public)
 done
 echo "dry run complete: nothing was published"

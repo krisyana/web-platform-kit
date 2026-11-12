@@ -19,7 +19,7 @@ Requires Node >= 20 and pnpm. Developed on Node 26 / pnpm 12.
 
 | Package | State |
 |---|---|
-| [`@kit/ui`](packages/ui) | M1 nearly done: 5 components + ThemeProvider, 13 unit tests, 23 browser tests (axe, keyboard, visual), size budget |
+| [`@kit/ui`](packages/ui) | M1 nearly done (now v0.3.0 after a deprecation + codemod demo, see [RELEASING](docs/RELEASING.md)): 5 components + ThemeProvider, 13 unit tests, 23 browser tests (axe, keyboard, visual), size budget |
 | [`@kit/auth`](packages/auth) | M2 done against a mock IdP: BFF, 42 tests, threat model, CSP/CORS/cookie guide |
 | [`@kit/telemetry`](packages/telemetry) | M3 done: tracing, logger, error boundary, Web Vitals, demo collector (21 tests) |
 
