@@ -87,5 +87,11 @@
     "opentelemetry",
     "web-vitals",
     "logging"
-  ]
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/krisyana/web-platform-kit.git",
+    "directory": "packages/telemetry"
+  },
+  "homepage": "https://github.com/krisyana/web-platform-kit#readme"
 }

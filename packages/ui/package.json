@@ -91,5 +91,11 @@
     "react",
     "design-system",
     "accessibility"
-  ]
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/krisyana/web-platform-kit.git",
+    "directory": "packages/ui"
+  },
+  "homepage": "https://github.com/krisyana/web-platform-kit#readme"
 }

@@ -14,7 +14,7 @@ Legend: ✅ verified by the command in the Evidence column | ⏳ planned | ❓ u
 | Visual regression (Playwright), darwin baselines | ✅ | 10 screenshots in `packages/ui/e2e/__screenshots__/darwin`; diff-fails path not demonstrated ❓ |
 | Visual regression on Linux/CI | ❓ | no Linux baselines yet; CI skips `@visual` |
 | Screen reader manual pass | ❓ | not done |
-| GitHub Actions workflow | ❓ | written, never executed (no push without owner OK) |
+| GitHub Actions workflow (verify + perf jobs) | ✅ | first run on push to main passed both jobs: https://github.com/krisyana/web-platform-kit/actions (run 43172107121). Visual tests still excluded in CI |
 | `"use client"` preserved in dist | ✅ | `head -c 14 packages/ui/dist/index.js` |
 | size-limit budget for `@kit/ui` (4 kB JS, 3 kB CSS gzip) | ✅ | `pnpm --filter @kit/ui size`: 2.05 kB JS, 1288 B CSS. Failure path not demonstrated ❓ |
 | Lighthouse / Web Vitals gates | ⏳ | M5 |
@@ -31,7 +31,7 @@ Legend: ✅ verified by the command in the Evidence column | ⏳ planned | ❓ u
 | Codemod `button-loading-to-busy` | ✅ | 6 fixture tests + jscodeshift CLI run on a sample file |
 | Migration guide + RELEASING doc | ✅ | `docs/migrations/ui-0.2-to-0.3.md`, `docs/RELEASING.md` |
 | Publish dry run (publint --strict, attw node16, `pnpm publish --dry-run`) for all 3 packages | ✅ | `pnpm release:dry-run` exits 0; nothing published. node10 resolution of subpath exports is ignored by design |
-| CI changeset-required check on PRs | ❓ | in workflow, never executed |
+| CI changeset-required check on PRs | ❓ | only runs on pull requests; no PR opened yet |
 | npm provenance / real publish | ❓ | not done; needs owner approval, public repo and `@kit` npm scope |
 | Demo app (Next.js 16 App Router) consuming ui + auth + telemetry, nonce CSP via proxy | ✅ | `pnpm --filter @kit/demo test`: 4 Playwright tests (CSP header + zero console errors, axe, full OIDC login against mock IdP with HttpOnly cookie and 403 on CSRF, telemetry arrives) |
 | Perf budgets: size-limit (ui, demo), Lighthouse CI assertions | ✅ | `pnpm lhci` exit 0 on baseline; exit 1 on a deliberate regression (see docs/perf/README.md) |

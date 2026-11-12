@@ -59,5 +59,11 @@
     "oauth2",
     "pkce",
     "bff"
-  ]
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/krisyana/web-platform-kit.git",
+    "directory": "packages/auth"
+  },
+  "homepage": "https://github.com/krisyana/web-platform-kit#readme"
 }
