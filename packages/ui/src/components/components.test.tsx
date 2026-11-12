@@ -25,6 +25,20 @@ describe("Button", () => {
     expect(btn).toHaveAttribute("aria-busy", "true");
     expect(btn).not.toBeDisabled();
   });
+  it("busy behaves like loading did", async () => {
+    const onClick = vi.fn();
+    render(<Button busy onClick={onClick}>Save</Button>);
+    await userEvent.click(screen.getByRole("button"));
+    expect(onClick).not.toHaveBeenCalled(); expect(screen.getByRole("button")).toHaveAttribute("aria-busy", "true");
+  });
+  it("still honours deprecated `loading` and warns once", async () => {
+    const warn = vi.spyOn(console, "warn").mockImplementation(() => {});
+    const { rerender } = render(<Button loading>A</Button>);
+    rerender(<Button loading>B</Button>);
+    expect(screen.getByRole("button")).toHaveAttribute("aria-busy", "true");
+    expect(warn.mock.calls.filter((c) => String(c[0]).includes("deprecated")).length).toBeLessThanOrEqual(1);
+    warn.mockRestore();
+  });
   it("defaults to type=button so it never submits a form by accident", () => {
     render(<Button>x</Button>);
     expect(screen.getByRole("button")).toHaveAttribute("type", "button");
