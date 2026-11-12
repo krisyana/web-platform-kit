@@ -1,0 +1,9 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "web-platform-kit-demo",
+  "main": ".open-next/worker.js",
+  "compatibility_date": "2026-11-01",
+  "compatibility_flags": ["nodejs_compat", "global_fetch_strictly_public"],
+  "assets": { "directory": ".open-next/assets", "binding": "ASSETS" },
+  "vars": { "APP_URL": "https://web-platform-kit-demo.example.workers.dev", "OIDC_ISSUER": "https://idp.example.com", "OIDC_CLIENT_ID": "demo-client" }
+}

@@ -21,6 +21,7 @@ Requires Node >= 20 and pnpm. Developed on Node 26 / pnpm 12.
 |---|---|
 | [`@kit/ui`](packages/ui) | M1 nearly done (now v0.3.0 after a deprecation + codemod demo, see [RELEASING](docs/RELEASING.md)): 5 components + ThemeProvider, 13 unit tests, 23 browser tests (axe, keyboard, visual), size budget |
 | [`@kit/auth`](packages/auth) | M2 done against a mock IdP: BFF, 42 tests, threat model, CSP/CORS/cookie guide |
+| [`apps/demo`](apps/demo) | Next.js demo using all three packages: nonce CSP, OIDC login, telemetry; 4 e2e tests; Cloudflare dry run |
 | [`@kit/telemetry`](packages/telemetry) | M3 done: tracing, logger, error boundary, Web Vitals, demo collector (21 tests) |
 
 ## Measured so far
@@ -33,3 +34,14 @@ Requires Node >= 20 and pnpm. Developed on Node 26 / pnpm 12.
 | Tests | 13 passing, axe 0 violations in tested states | `pnpm --filter @kit/ui test` |
 
 Performance budgets, Lighthouse and before/after numbers arrive in M5.
+
+## Performance (lab, local, median of 3 Lighthouse runs; details and caveats in [docs/perf](docs/perf/README.md))
+
+| | Baseline | Deliberate regression (gate fails) |
+|---|---|---|
+| Demo client JS gzip | 208 kB (budget 230 kB) | 660 kB: `size-limit` fails |
+| Lighthouse performance | 1.00 | 0.71: `lhci` fails |
+| LCP / TBT / CLS | 755 ms / 4 ms / 0.007 | 756 ms / 3488 ms / 0.007 |
+
+## Release
+Changesets + Changeset-gated CI, a deprecation lifecycle with codemod ([RELEASING](docs/RELEASING.md)), `pnpm release:dry-run`. Nothing is published, pushed or deployed.

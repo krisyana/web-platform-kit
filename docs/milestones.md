@@ -39,13 +39,13 @@ Acceptance:
 3. One deliberate breaking change in `@kit/ui` with: deprecation in minor, removal in major, `docs/migrations/` guide and a jscodeshift codemod with fixture tests.
 4. `pnpm release:dry-run` (pack + publint + attw + `npm publish --dry-run`) exits 0. **No real publish without owner approval.**
 
-## M5: Performance budgets
+## M5: Performance budgets (done 2026-11-12, lab numbers only)
 1. size-limit budgets per package fail CI when exceeded (proved by a deliberately failing branch, output recorded).
 2. Lighthouse CI on the demo app: performance >= 0.9, accessibility >= 0.95 (assertions in `lighthouserc.json`).
 3. Web Vitals thresholds (LCP <= 2.5 s, CLS <= 0.1, INP proxy via TBT <= 200 ms) asserted in LHCI.
 4. README holds before/after numbers with the commit hashes that produced them.
 
-## M6: Demo app
+## M6: Demo app (done except deploy; dry run only)
 1. Next.js App Router app consumes `@kit/ui`, `@kit/auth` (BFF routes) and `@kit/telemetry`.
 2. Playwright e2e: login against mock OIDC, protected route, refresh, logout.
 3. `wrangler deploy --dry-run` succeeds (OpenNext for Cloudflare or equivalent). `[UNVERIFIED]` toolchain choice. **Deploy only with owner approval.**

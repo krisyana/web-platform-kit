@@ -37,3 +37,5 @@ Legend: ✅ verified by the command in the Evidence column | ⏳ planned | ❓ u
 | Perf budgets: size-limit (ui, demo), Lighthouse CI assertions | ✅ | `pnpm lhci` exit 0 on baseline; exit 1 on a deliberate regression (see docs/perf/README.md) |
 | Before/after numbers | ✅ (lab, local) | docs/perf/README.md; baseline LCP 755 ms, TBT 4 ms, JS 208 kB gz |
 | Field Web Vitals / CI-hosted Lighthouse numbers | ❓ | none yet |
+| Cloudflare: OpenNext build + `wrangler deploy --dry-run` | ✅ | `pnpm --filter @kit/demo cf:dry-run` exit 0, nothing uploaded |
+| Demo running in workerd / deployed, Node `proxy.ts` on Cloudflare, durable session store | ❓ | not done; see apps/demo/README.md |
