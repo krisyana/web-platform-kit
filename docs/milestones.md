@@ -17,7 +17,7 @@ Acceptance:
 6. Bundle: ESM entry < 8 kB min+gzip (size-limit), CSS < 6 kB gzip. `[number recorded in M5]`
 7. Package exports pass `publint`. `[M4]`
 
-## M2: `@kit/auth`
+## M2: `@kit/auth` (done 2026-11-12, mock IdP only)
 1. Code + PKCE (S256), state, nonce, ID token validation against a mock OIDC provider: happy path e2e test.
 2. Tokens never exposed to browser JS: test asserts no token in response bodies, JS-readable cookies, or storage.
 3. Cookie attributes asserted: `HttpOnly`, `Secure`, `SameSite`, `__Host-` prefix.

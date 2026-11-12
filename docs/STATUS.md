@@ -19,3 +19,8 @@ Legend: ✅ verified by the command in the Evidence column | ⏳ planned | ❓ u
 | size-limit budget for `@kit/ui` (4 kB JS, 3 kB CSS gzip) | ✅ | `pnpm --filter @kit/ui size`: 2.05 kB JS, 1288 B CSS. Failure path not demonstrated ❓ |
 | Lighthouse / Web Vitals gates | ⏳ | M5 |
 | `@kit/auth`, `@kit/telemetry`, release tooling, demo app | ⏳ | M2-M6 |
+| `@kit/auth` BFF: code+PKCE, nonce/state, ID token checks, session cookies, CSRF, refresh rotation + single-flight, reuse revocation | ✅ | `pnpm --filter @kit/auth test`: 42 tests, 100% lines / 91% branches |
+| `@kit/auth` negative-test sensitivity | ✅ | manually disabled CSRF check and tx check: 2 tests failed each (not automated) |
+| `@kit/auth` against a real IdP (Keycloak/Auth0/Google) | ❓ | only the mock IdP |
+| `@kit/auth` production session store, RP-initiated logout, rate limiting | ⏳ | not implemented; listed in threat model |
+| CSP guidance | ❓ | written, to be proven in M6 demo |
