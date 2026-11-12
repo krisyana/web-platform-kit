@@ -43,6 +43,17 @@ test("dialog: focus trap, Esc closes, focus returns to opener", async ({ page })
   await expect(opener).toBeFocused();
 });
 
+test("dialog: clicking inside the dialog (including its padding) does not close it; clicking the backdrop does", async ({ page }) => {
+  await open(page, "kit--dialog-example", "light");
+  await page.getByRole("button", { name: "Open dialog" }).click();
+  const dialog = page.getByRole("dialog", { name: "Delete item" });
+  const box = (await dialog.boundingBox())!;
+  await page.mouse.click(box.x + 4, box.y + 4); // inside the dialog's padding
+  await expect(dialog).toBeVisible();
+  await page.mouse.click(2, 2); // backdrop
+  await expect(dialog).toBeHidden();
+});
+
 test("toast: error toast lands in the alert region and persists", async ({ page }) => {
   await open(page, "kit--toasts", "light");
   await page.getByRole("button", { name: "Error toast" }).click();

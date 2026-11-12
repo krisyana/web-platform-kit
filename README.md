@@ -19,7 +19,7 @@ Requires Node >= 20 and pnpm. Developed on Node 26 / pnpm 12.
 
 | Package | State |
 |---|---|
-| [`@kit/ui`](packages/ui) | M1 nearly done (now v0.3.0 after a deprecation + codemod demo, see [RELEASING](docs/RELEASING.md)): 5 components + ThemeProvider, 13 unit tests, 23 browser tests (axe, keyboard, visual), size budget |
+| [`@kit/ui`](packages/ui) | M1 nearly done (now v0.3.0 after a deprecation + codemod demo, see [RELEASING](docs/RELEASING.md)): 5 components + ThemeProvider, 15 unit tests + 6 codemod tests, 24 browser tests (axe, keyboard, visual), size budget |
 | [`@kit/auth`](packages/auth) | M2 done against a mock IdP: BFF, 42 tests, threat model, CSP/CORS/cookie guide |
 | [`apps/demo`](apps/demo) | Next.js demo using all three packages: nonce CSP, OIDC login, telemetry; 4 e2e tests; Cloudflare dry run |
 | [`@kit/telemetry`](packages/telemetry) | M3 done: tracing, logger, error boundary, Web Vitals, demo collector (21 tests) |
@@ -31,7 +31,7 @@ Requires Node >= 20 and pnpm. Developed on Node 26 / pnpm 12.
 | `@kit/ui` JS (minified, gzip, size-limit) | 2.05 kB (budget 4 kB) | `pnpm --filter @kit/ui size` |
 | `@kit/ui` CSS (gzip) | 1288 B (budget 3 kB) | same command |
 | Browser tests | 23 pass (axe incl. contrast, dialog keyboard, toasts, theme, 10 visual) | `pnpm --filter @kit/ui test:e2e` |
-| Tests | 13 passing, axe 0 violations in tested states | `pnpm --filter @kit/ui test` |
+| Tests | 21 unit/codemod passing, axe 0 violations in tested states | `pnpm --filter @kit/ui test` |
 
 Performance budgets, Lighthouse and before/after numbers arrive in M5.
 

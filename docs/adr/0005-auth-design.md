@@ -10,7 +10,7 @@ Current IETF guidance for browser-based apps (OAuth 2.0 for Browser-Based Applic
 
 ## Decision
 - Flow: **Authorization Code + PKCE (S256)** with `state` and `nonce`; ID token validated (signature via JWKS, `iss`, `aud`, `exp`, `nonce`).
-- The **BFF** (framework-agnostic request handlers, with a Next.js adapter) is the only OAuth client. Browser JS never sees
+- The **BFF** (framework-agnostic Fetch-API request handlers; the demo mounts them in a Next.js route handler) is the only OAuth client. Browser JS never sees
   access, refresh or ID tokens.
 - Session: opaque session id in a cookie: `HttpOnly; Secure; SameSite=Lax; Path=/; __Host-` prefix. Tokens live in a server-side session store (interface; in-memory for tests, pluggable for prod).
 - **Refresh rotation:** refresh happens server-side on demand; refresh tokens are rotated each use; reuse of a rotated token

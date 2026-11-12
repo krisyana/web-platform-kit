@@ -30,7 +30,12 @@ export function Dialog({ open, onClose, title, children, actions }: DialogProps)
       className="kit-dialog"
       aria-labelledby={titleId}
       onClose={onClose}
-      onClick={(e) => { if (e.target === e.currentTarget) onClose(); /* backdrop click */ }}
+      onClick={(e) => {
+        // The backdrop is part of the <dialog> box for hit-testing, but so is its padding: compare against the rect.
+        const r = e.currentTarget.getBoundingClientRect();
+        const inside = e.clientX >= r.left && e.clientX <= r.right && e.clientY >= r.top && e.clientY <= r.bottom;
+        if (e.target === e.currentTarget && !inside) onClose();
+      }}
     >
       <h2 className="kit-dialog__title" id={titleId}>{title}</h2>
       <div>{children}</div>

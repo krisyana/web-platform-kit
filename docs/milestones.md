@@ -14,7 +14,7 @@ Acceptance:
 3. Storybook builds (`pnpm --filter @kit/ui build-storybook` exits 0) with a story per component and the a11y addon enabled.
 4. Visual regression: Playwright screenshot per story in light and dark; CI fails on diff > 0.1% pixels. `[pending until baseline generated in CI]`
 5. Keyboard and screen-reader contract documented per component (`packages/ui/docs/a11y.md`).
-6. Bundle: ESM entry < 8 kB min+gzip (size-limit), CSS < 6 kB gzip. `[number recorded in M5]`
+6. Bundle: ESM entry <= 4 kB min+gzip (size-limit), CSS <= 3 kB gzip. Measured: 2.05 kB and 1288 B.
 7. Package exports pass `publint`. `[M4]`
 
 ## M2: `@kit/auth` (done 2026-11-12, mock IdP only)

@@ -10,7 +10,7 @@ Legend: ✅ verified by the command in the Evidence column | ⏳ planned | ❓ u
 | axe: 0 violations in tested states (jsdom) | ✅ | same run; colour contrast excluded in jsdom |
 | Storybook builds | ✅ | `pnpm --filter @kit/ui build-storybook` exits 0 |
 | axe in real Chromium incl. colour contrast, 5 stories x light/dark | ✅ | `pnpm --filter @kit/ui test:e2e` (23 tests, passed 4 consecutive runs after fixing a theme-timing race) |
-| Dialog focus stays in dialog, Esc closes, focus returns to opener (Chromium) | ✅ | e2e `dialog:` test. Firefox/WebKit not run ❓ |
+| Dialog focus stays in dialog, Esc closes, focus returns to opener, padding click does not close (Chromium) | ✅ | e2e `dialog:` tests (found and fixed in review). Firefox/WebKit not run ❓ |
 | Visual regression (Playwright), darwin baselines | ✅ | 10 screenshots in `packages/ui/e2e/__screenshots__/darwin`; diff-fails path not demonstrated ❓ |
 | Visual regression on Linux/CI | ❓ | no Linux baselines yet; CI skips `@visual` |
 | Screen reader manual pass | ❓ | not done |

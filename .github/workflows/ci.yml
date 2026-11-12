@@ -12,6 +12,8 @@ jobs:
       - uses: actions/setup-node@v4
         with: { node-version: 22, cache: pnpm }
       - run: pnpm install --frozen-lockfile
+      # Browsers must exist before `pnpm run ci`, whose test task includes the demo's Playwright e2e.
+      - run: pnpm --filter @kit/ui exec playwright install --with-deps chromium
       - name: Require a changeset for published-package changes
         if: github.event_name == 'pull_request'
         run: pnpm exec changeset status --since=origin/${{ github.base_ref }}
@@ -22,7 +24,6 @@ jobs:
         run: pnpm --filter @kit/ui size
       - name: Build Storybook
         run: pnpm --filter @kit/ui build-storybook
-      - run: pnpm --filter @kit/ui exec playwright install --with-deps chromium
       # Visual baselines are committed for darwin only so far; Linux baselines still need generating (see STATUS).
       - name: Browser tests (axe, keyboard; visual excluded)
         run: pnpm --filter @kit/ui exec playwright test --grep-invert @visual
@@ -39,6 +40,3 @@ jobs:
       - name: Size budgets and Lighthouse CI (fail on regression)
         working-directory: apps/demo
         run: pnpm size && pnpm lhci
-      - name: Demo e2e (Playwright)
-        working-directory: apps/demo
-        run: pnpm exec playwright install --with-deps chromium && pnpm test
